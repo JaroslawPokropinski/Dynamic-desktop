@@ -1,0 +1,28 @@
+{
+  "name": "dynamic-desktop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "postinstall": "electron-builder --win --ia32 install-app-deps",
+    "pack": "electron-builder --win --ia32 --dir",
+    "dist": "electron-builder --win --ia32"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^2.0.18",
+    "electron-builder": "^20.28.4"
+  },
+  "build": {
+    "appId": "com.example.dynamic-desktop",
+    "win": {
+      "target": "portable",
+      "icon": "ico.ico"
+    }
+  },
+  "dependencies": {
+    "ffi": "^2.3.0"
+  }
+}
