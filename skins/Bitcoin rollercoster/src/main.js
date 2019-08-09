@@ -21,8 +21,8 @@ function createWindow() {
   for (let skin of skinInfo.active) {
     console.log(skin);
     const newWindow = new BrowserWindow({
-      width: 450,
-      height: 450,
+      width: 680,
+      height: 680,
       frame: false,
       transparent: true,
       webPreferences: {
@@ -31,6 +31,7 @@ function createWindow() {
     });
     windowMap.set(skin, newWindow);
     const p = path.join(__dirname, '..', 'skins', skin);
+    console.log(p);
     newWindow.loadFile(p);
     newWindow.on('closed', function() {
       newWindow = null;

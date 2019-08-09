@@ -1,0 +1,8 @@
+{
+    "skin_path": [
+        "./skins/"
+    ],
+    "active": [
+        "Bitcoin rollercoster/index.html"
+    ]
+}
