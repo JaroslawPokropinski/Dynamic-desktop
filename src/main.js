@@ -17,8 +17,10 @@ let mainWindow;
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 680,
+    height: 680,
+    frame: false,
+    transparent: true,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     }
@@ -42,10 +44,8 @@ function createWindow() {
   mainWindow.on('focus', function() {
     winapi.SetWindowPos(hwnd, 1, 0, 0, 0, 0, 0x0013);
   });
-
-  console.log(hwnd);
-  winapi.SetWindowPos(hwnd, 1, 0, 0, 0, 0, 0x0013);
   // SetWindowPos(hWnd, HWND_BOTTOM, 0, 0, 0, 0, SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSIZE);
+  winapi.SetWindowPos(hwnd, 1, 0, 0, 0, 0, 0x0013);
 }
 
 // This method will be called when Electron has finished
