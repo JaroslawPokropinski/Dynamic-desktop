@@ -11,4 +11,5 @@ npm install --global windows-build-tools
 Then execute
 ```
 npm install
+npm start
 ```
