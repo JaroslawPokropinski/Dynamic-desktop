@@ -1,29 +1,58 @@
 {
-  "name": "dynamic-desktop",
+  "name": "dynamic-desktop-update",
+  "productName": "dynamic-desktop-update",
   "version": "1.0.0",
-  "description": "",
+  "description": "My Electron application description",
   "main": "src/main.js",
   "scripts": {
-    "start": "electron .",
-    "postinstall": "electron-builder --win --ia32 install-app-deps",
-    "pack": "electron-builder --win --ia32 --dir",
-    "dist": "electron-builder --win --ia32"
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\""
   },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "electron": "^2.0.18",
-    "electron-builder": "^20.28.4"
+  "keywords": [],
+  "author": {
+    "name": "JaroslawPokropinski",
+    "email": "jarek.pokropinski@gmail.com"
   },
-  "build": {
-    "appId": "com.example.dynamic-desktop",
-    "win": {
-      "target": "portable",
-      "icon": "ico.ico"
+  "license": "MIT",
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "dynamic_desktop_update"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
     }
   },
   "dependencies": {
-    "debug": "^4.1.1",
-    "ffi": "^2.3.0"
+    "electron-squirrel-startup": "^1.0.0"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "6.0.0-beta.43",
+    "@electron-forge/maker-deb": "6.0.0-beta.43",
+    "@electron-forge/maker-rpm": "6.0.0-beta.43",
+    "@electron-forge/maker-squirrel": "6.0.0-beta.43",
+    "@electron-forge/maker-zip": "6.0.0-beta.43",
+    "electron": "6.0.1"
   }
 }

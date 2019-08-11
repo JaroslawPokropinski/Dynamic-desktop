@@ -1,26 +1,22 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
-const ffi = require('ffi');
 const skinInfo = require('../config.json');
-console.log(skinInfo);
 
-const winapi = ffi.Library('User32', {
-  SetWindowPos: [
-    'bool',
-    ['uint32', 'uint32', 'int', 'int', 'int', 'int', 'uint']
-  ]
-});
+// Handle creating/removing shortcuts on Windows when installing/uninstalling.
+if (require('electron-squirrel-startup')) {
+  // eslint-disable-line global-require
+  app.quit();
+}
 
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the JavaScript object is garbage collected.
-let mainWindow;
 let windowMap = new Map();
 
 function createWindow() {
+  const { SetWindowPos } = require('./addon');
+  console.log(SetWindowPos);
   for (let skin of skinInfo.active) {
     console.log(skin);
-    const newWindow = new BrowserWindow({
+    let newWindow = new BrowserWindow({
       width: 450,
       height: 450,
       frame: false,
@@ -29,53 +25,21 @@ function createWindow() {
         preload: path.join(__dirname, 'preload.js')
       }
     });
+    const hwndBuffer = newWindow.getNativeWindowHandle();
+    const hwnd = hwndBuffer.readInt32LE();
+
     windowMap.set(skin, newWindow);
     const p = path.join(__dirname, '..', 'skins', skin);
     newWindow.loadFile(p);
     newWindow.on('closed', function() {
       newWindow = null;
     });
-    let hwndBuffer = newWindow.getNativeWindowHandle();
-    let hwnd = hwndBuffer.readInt32LE();
+
     newWindow.on('focus', function() {
-      winapi.SetWindowPos(hwnd, 1, 0, 0, 0, 0, 0x0013);
+      SetWindowPos(hwnd, 1, 0, 0, 0, 0, 0x0013);
     });
-    winapi.SetWindowPos(hwnd, 1, 0, 0, 0, 0, 0x0013);
+    SetWindowPos(hwnd, 1, 0, 0, 0, 0, 0x0013);
   }
-}
-
-function createWindowOld() {
-  // Create the browser window.
-  mainWindow = new BrowserWindow({
-    width: 680,
-    height: 680,
-    frame: false,
-    transparent: true,
-    webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
-    }
-  });
-
-  // and load the index.html of the app.
-  mainWindow.loadFile('index.html');
-
-  // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
-
-  // Emitted when the window is closed.
-  mainWindow.on('closed', function() {
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
-    mainWindow = null;
-  });
-  let hwndBuffer = mainWindow.getNativeWindowHandle();
-  let hwnd = hwndBuffer.readInt32LE();
-  mainWindow.on('focus', function() {
-    winapi.SetWindowPos(hwnd, 1, 0, 0, 0, 0, 0x0013);
-  });
-  // SetWindowPos(hWnd, HWND_BOTTOM, 0, 0, 0, 0, SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSIZE);
-  winapi.SetWindowPos(hwnd, 1, 0, 0, 0, 0, 0x0013);
 }
 
 // This method will be called when Electron has finished
