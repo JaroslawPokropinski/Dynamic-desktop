@@ -20,21 +20,23 @@ function createWindow() {
       width: 450,
       height: 450,
       frame: false,
+      minimizable: false,
+      maximizable: false,
       transparent: true,
       webPreferences: {
-        preload: path.join(__dirname, 'preload.js')
+        nodeIntegration: true
       }
     });
     const hwndBuffer = newWindow.getNativeWindowHandle();
     const hwnd = hwndBuffer.readInt32LE();
 
+    // newWindow.setIgnoreMouseEvents(true, { forward: true });
     windowMap.set(skin, newWindow);
     const p = path.join(__dirname, '..', 'skins', skin);
     newWindow.loadFile(p);
     newWindow.on('closed', function() {
       newWindow = null;
     });
-
     newWindow.on('focus', function() {
       SetWindowPos(hwnd, 1, 0, 0, 0, 0, 0x0013);
     });

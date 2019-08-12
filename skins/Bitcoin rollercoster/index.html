@@ -3,11 +3,6 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta property="og:url" content="https://rollercoasterguy.github.io" />
-    <meta property="og:title" content="Bitcoin Roller Coaster Guy" />
-    <meta property="og:image" content="https://raw.githubusercontent.com/rollercoasterguy/rollercoasterguy.github.io/master/images/page_thumb.jpg"
-    />
     <meta property="og:type" content="website" />
 
     <title>Bitcoin Roller Coaster Guy</title>
@@ -19,7 +14,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container clickThroughElement">
         <div class="container" style="margin-bottom:40px;margin-top:50px;">
             <div class="text-center" style="margin-bottom:50px;">
                 <img alt="no-fun-roller-coaster-guy" id="roller-coaster-guy" class="image-responsive" src="images/no-fun-roller-coaster-guy.gif"
@@ -31,9 +26,9 @@
     <script>if (typeof module === 'object') { window.module = module; module = undefined; }</script>
     <script src="src/jquery.min.js"></script>
     <script src="src/pusher.min.js"></script>
-    <script>if (window.module) module = window.module;</script>
     <script src="js/markets.js"></script>
     <script src="js/roller-coaster-engine.js"></script>
+    <script>if (window.module) {module = window.module;}</script>  
 </body>
 
 </html>
