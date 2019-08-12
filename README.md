@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/JaroslawPokropinski/Dynamic-desktop.svg?branch=master)](https://travis-ci.org/JaroslawPokropinski/Dynamic-desktop)
 ## Requirements
 + Windows
-+ Node 8.x (tested on 8.16)
++ Node (tested on 12.x 10.x 8.x)
 + windows-build-tools
 ## Instalation
 Make sure you've installed all the necessary build tools
