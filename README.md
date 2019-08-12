@@ -1,4 +1,5 @@
 # Dynamic-desktop
+[![Build Status](https://travis-ci.org/JaroslawPokropinski/Dynamic-desktop.svg?branch=master)](https://travis-ci.org/JaroslawPokropinski/Dynamic-desktop)
 ## Requirements
 + Windows
 + Node 8.x (tested on 8.16)
