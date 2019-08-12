@@ -30,7 +30,7 @@ function createWindow() {
     const hwndBuffer = newWindow.getNativeWindowHandle();
     const hwnd = hwndBuffer.readInt32LE();
 
-    // newWindow.setIgnoreMouseEvents(true, { forward: true });
+    newWindow.setIgnoreMouseEvents(true, { forward: true });
     windowMap.set(skin, newWindow);
     const p = path.join(__dirname, '..', 'skins', skin);
     newWindow.loadFile(p);

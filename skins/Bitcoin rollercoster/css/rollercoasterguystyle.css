@@ -6,7 +6,6 @@ body {
     background-size: cover;
     font-family: 'Open Sans', sans-serif;
     font-size: 30px;
-    -webkit-app-region: drag;
 }
 
 html,
