@@ -1,8 +1,33 @@
 {
-    "skin_path": [
-        "./skins/"
-    ],
-    "active": [
-        "Bitcoin rollercoster/index.html"
-    ]
+  "skin_path": [
+    "./skins/"
+  ],
+  "active": [
+    "Bitcoin rollercoster/index.html",
+    "Hyper/index.html"
+  ],
+  "skins": [
+    {
+      "source": "Bitcoin rollercoster/index.html",
+      "size": {
+        "w": 450,
+        "h": 450
+      },
+      "position": {
+        "x": 3455,
+        "y": 62
+      }
+    },
+    {
+      "source": "Hyper/index.html",
+      "size": {
+        "w": 450,
+        "h": 450
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  ]
 }

@@ -265,15 +265,14 @@ $(document).ready(function() {
   const win = require('electron').remote.getCurrentWindow();
   const getCursorPos = require('electron').remote.screen.getCursorScreenPoint;
   let isDownMe = false;
+
   let pos = null;
 
   $('.clickable')
     .on('mouseenter', () => {
-      console.log('in');
       win.setIgnoreMouseEvents(false);
     })
     .on('mouseleave', () => {
-      console.log('out');
       win.setIgnoreMouseEvents(true, { forward: true });
     })
     .on('mousedown', () => {
@@ -283,15 +282,15 @@ $(document).ready(function() {
     .on('mouseup', () => {
       isDownMe = false;
       pos = null;
-    })
-    .on('mousemove', () => {
-      if (isDownMe) {
-        const t = getCursorPos();
-        const dx = t.x - pos.x;
-        const dy = t.y - pos.y;
-        pos = t;
-        const winPos = win.getPosition();
-        win.setPosition(winPos[0] + dx, winPos[1] + dy);
-      }
     });
+  win.hookWindowMessage(0x200, () => {
+    if (isDownMe) {
+      const t = getCursorPos();
+      const dx = t.x - pos.x;
+      const dy = t.y - pos.y;
+      pos = t;
+      const winPos = win.getPosition();
+      win.setPosition(winPos[0] + dx, winPos[1] + dy);
+    }
+  });
 });
